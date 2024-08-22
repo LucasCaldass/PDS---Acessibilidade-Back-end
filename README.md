@@ -45,6 +45,18 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Database
+Com o docker instalado execute o seguite comando para iniciar uma instância de postgresql
+
+```bash
+$ docker compose up
+```
+
+Utilize o comando abaixo para acessar a instância via terminal ou utilize o pgAdmin / Dbeaver / Beekeeper
+```
+$ docker exec -it <hash_container> bash
+```
+
 ## Test
 
 ```bash
