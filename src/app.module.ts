@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DomainModule } from './domain/domain.module';
 import { ApplicationModule } from './application/application.module';
-import { VagaEntity } from './infrastructure/data/entities/vaga.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import typeorm from './config/ormconfig';
+import { InfrastructureModule } from './infrastructure/infrastructure.module';
 
 @Module({
   imports: [
@@ -17,7 +17,8 @@ import typeorm from './config/ormconfig';
       useFactory: async (configService: ConfigService) => (configService.get('typeorm'))
     }),
     DomainModule,
-    ApplicationModule
+    ApplicationModule,
+    InfrastructureModule
   ],
   providers: [],
 })

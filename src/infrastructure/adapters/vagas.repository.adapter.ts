@@ -16,4 +16,16 @@ export class VagasRepositoryAdapter implements VagasRepository {
     const vagaEntity = await this.vagaRepository.save(vaga);
     return vagaEntity;
   }
+
+  async findAll(): Promise<Vaga[]> {
+    return await this.vagaRepository.find();
+  }
+
+  async findById(id: string): Promise<Vaga> {
+    return await this.vagaRepository.findOneBy({id});
+  }
+
+  async deleteById(id: string): Promise<void> {
+    await this.vagaRepository.delete(id)
+  }
 }
