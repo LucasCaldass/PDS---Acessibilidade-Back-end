@@ -1,10 +1,11 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Delete } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { CreateVagaRequest } from './requests/create-vaga.request';
 import { CreateVagaUseCase } from 'src/application/usecases/vagas/create-vaga.usecase';
 import { Vaga } from 'src/domain/models/vaga.model';
 import { ListAllVagasUseCase } from 'src/application/usecases/vagas/list-all-vagas.usecase';
 import { FindVagaByIdUseCase } from 'src/application/usecases/vagas/find-vaga-by-id.usecase';
+import { DeleteVagaByIdUseCase } from 'src/application/usecases/vagas/delete-vaga-by-id.usecase';
 
 @ApiTags('Vagas')
 @Controller('vagas')
@@ -13,6 +14,7 @@ export class VagasController {
     private readonly createVagaUseCase: CreateVagaUseCase,
     private readonly listAllVagasUseCase: ListAllVagasUseCase,
     private readonly findVagaByIdUseCase: FindVagaByIdUseCase,
+    private readonly deleteVagaByIdUseCase: DeleteVagaByIdUseCase,
   ) { }
 
   @Post()
@@ -43,5 +45,15 @@ export class VagasController {
   })
   async find(@Param('id') id: string): Promise<Vaga> {
     return await this.findVagaByIdUseCase.execute(id);
+  }
+
+  @Delete(':id')
+  @ApiOperation({summary: 'Deletar Vaga'})
+  @ApiResponse({
+    status: 200,
+    description: 'Deletar Vaga',
+  })
+  async delete(@Param('id') id: string): Promise<void> {
+    return await this.deleteVagaByIdUseCase.execute(id);
   }
 }
