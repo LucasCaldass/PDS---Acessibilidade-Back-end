@@ -3,20 +3,18 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DomainModule } from './domain/domain.module';
 import { ApplicationModule } from './application/application.module';
 import { VagaEntity } from './infrastructure/data/entities/vaga.entity';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import typeorm from './config/ormconfig';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: String(process.env.DB_HOST),
-      port: parseInt(process.env.DB_PORT, 10),
-      username: String(process.env.DB_USER),
-      password: String(process.env.DB_PASS),
-      database: String(process.env.DB_NAME),
-      entities: [VagaEntity],
-      synchronize: false,
-      migrations: ['src/migrations/**/*.ts'],
-      logging: true,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [typeorm]
+    }),
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => (configService.get('typeorm'))
     }),
     DomainModule,
     ApplicationModule
