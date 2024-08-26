@@ -20,6 +20,7 @@ lerna-debug.log*
 
 # docker postgres volume
 .data/
+.env
 
 # IDEs and editors
 /.idea
