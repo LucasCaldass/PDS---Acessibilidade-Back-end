@@ -5,13 +5,18 @@ import { IVagasRepository } from "./repositories/vagas.repository";
 import { VagasRepositoryAdapter } from "src/infrastructure/adapters/vagas.repository.adapter";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { VagaEntity } from "src/infrastructure/data/entities/vaga.entity";
+import { ListAllVagasUseCase } from './usecases/vagas/list-all-vagas.usecase';
 
 @Module({
   imports: [DomainModule, TypeOrmModule.forFeature([VagaEntity])],
   providers: [
     CreateVagaUseCase,
+    ListAllVagasUseCase,
     { provide: IVagasRepository, useClass: VagasRepositoryAdapter }
   ],
-  exports: [CreateVagaUseCase]
+  exports: [
+    CreateVagaUseCase,
+    ListAllVagasUseCase,
+  ]
 })
 export class ApplicationModule { }
