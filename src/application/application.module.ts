@@ -6,17 +6,20 @@ import { VagasRepositoryAdapter } from "src/infrastructure/adapters/vagas.reposi
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { VagaEntity } from "src/infrastructure/data/entities/vaga.entity";
 import { ListAllVagasUseCase } from './usecases/vagas/list-all-vagas.usecase';
+import { FindVagaByIdUseCase } from './usecases/vagas/find-vaga-by-id.usecase';
 
 @Module({
   imports: [DomainModule, TypeOrmModule.forFeature([VagaEntity])],
   providers: [
     CreateVagaUseCase,
     ListAllVagasUseCase,
+    FindVagaByIdUseCase,
     { provide: IVagasRepository, useClass: VagasRepositoryAdapter }
   ],
   exports: [
     CreateVagaUseCase,
     ListAllVagasUseCase,
+    FindVagaByIdUseCase
   ]
 })
 export class ApplicationModule { }

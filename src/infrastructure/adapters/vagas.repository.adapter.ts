@@ -20,4 +20,8 @@ export class VagasRepositoryAdapter implements VagasRepository {
   async findAll(): Promise<Vaga[]> {
     return await this.vagaRepository.find();
   }
+
+  async findById(id: string): Promise<Vaga> {
+    return await this.vagaRepository.findOneBy({id});
+  }
 }
