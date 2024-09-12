@@ -8,6 +8,7 @@ import { VagaEntity } from "src/infrastructure/data/entities/vaga.entity";
 import { ListAllVagasUseCase } from './usecases/vagas/list-all-vagas.usecase';
 import { FindVagaByIdUseCase } from './usecases/vagas/find-vaga-by-id.usecase';
 import { DeleteVagaByIdUseCase } from './usecases/vagas/delete-vaga-by-id.usecase';
+import { SearchVagasUseCase } from "./usecases/vagas/search-vagas.usecase";
 
 @Module({
   imports: [DomainModule, TypeOrmModule.forFeature([VagaEntity])],
@@ -16,13 +17,15 @@ import { DeleteVagaByIdUseCase } from './usecases/vagas/delete-vaga-by-id.usecas
     ListAllVagasUseCase,
     FindVagaByIdUseCase,
     DeleteVagaByIdUseCase,
+    SearchVagasUseCase,
     { provide: IVagasRepository, useClass: VagasRepositoryAdapter }
   ],
   exports: [
     CreateVagaUseCase,
     ListAllVagasUseCase,
     FindVagaByIdUseCase,
-    DeleteVagaByIdUseCase
+    DeleteVagaByIdUseCase,
+    SearchVagasUseCase,
   ]
 })
 export class ApplicationModule { }
