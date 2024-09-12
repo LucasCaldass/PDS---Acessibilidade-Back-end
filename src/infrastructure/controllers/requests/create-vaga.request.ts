@@ -4,7 +4,8 @@ import { IsBoolean, IsEnum, IsNotEmpty, IsNumber, IsString } from "class-validat
 export enum TipoDeficienciaEnum {
   VISUAL = 'VISUAL',
   AUDITIVA = 'AUDITIVA',
-  MOTORA = 'MOTORA'
+  MOTORA = 'MOTORA',
+  MENTAL = 'MENTAL'
 }
 
 export class CreateVagaRequest {
