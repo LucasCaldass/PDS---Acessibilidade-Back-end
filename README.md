@@ -26,6 +26,17 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Para devs frontend
+Se você quer apenas executar o backend para auxiliar no desenvolvimento das telas
+o ideal é executar o seguinte:
+```bash
+$ docker compose up --build
+```
+Este comando é suficiente para subir a aplicação junto com o banco
+e expor o backend na porta 3000.
+Para ver os endpoints desenvolvidos e os payloads que são exigidos, execute o comando acima e acesse 
+> http://localhost:3000/api
+
 ## Installation
 
 ```bash
@@ -39,10 +50,20 @@ $ npm install
 $ npm run start
 
 # watch mode
-$ npm run start:dev
+$ npm run dev
 
 # production mode
 $ npm run start:prod
+```
+
+## Criando uma Migration
+Para criar uma migration a partir das alterações nas entidades, execute o comando abaixo:
+```bash
+$ npm run migration:generate --name=<MigrationName>
+```
+ex:
+```bash
+$ npm run migraiton:generate --name=AddTableVagas
 ```
 
 ## Database

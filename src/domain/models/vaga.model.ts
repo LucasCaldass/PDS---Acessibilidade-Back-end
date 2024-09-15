@@ -1,4 +1,4 @@
-import { TipoDeficienciaEnum } from "src/infrastructure/controllers/requests/create-vaga.request";
+import { TipoDeficienciaEnum } from "src/infrastructure/data/entities/vaga.entity";
 
 export type Vaga = {
   titulo: string;

@@ -1,5 +1,10 @@
-import { TipoDeficienciaEnum } from 'src/infrastructure/controllers/requests/create-vaga.request';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+
+export enum TipoDeficienciaEnum {
+  VISUAL = 'VISUAL',
+  AUDITIVA = 'AUDITIVA',
+  MOTORA = 'MOTORA'
+};
 
 @Entity('vagas')
 export class VagaEntity {
