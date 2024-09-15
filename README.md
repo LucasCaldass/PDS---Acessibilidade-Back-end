@@ -66,6 +66,17 @@ ex:
 $ npm run migraiton:generate --name=AddTableVagas
 ```
 
+## Executando a migration
+Para executar as migrations que ainda não foram aplicadas, execute o seguinte comando:
+```bash
+$ npm run migration:run
+```
+Caso as migrations não sejam aplicadas, execute o seguinte comando antes de tentar novamente:
+```bash
+$ npm run build
+```
+Na primeira vez executar o `docker compose up` as migrations serão todas aplicadas no banco
+
 ## Database
 Com o docker instalado execute o seguite comando para iniciar uma instância de postgresql
 
