@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ILike, Repository } from 'typeorm';
-import { Vaga } from 'src/domain/models/vaga.model';
-import { VagasRepository } from 'src/application/repositories/vagas.repository';
+import { Vaga } from '../../domain/models/vaga.model';
+import { VagasRepository } from '../../application/repositories/vagas.repository';
 import { VagaEntity } from '../data/entities/vaga.entity';
 
 @Injectable()

@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IVagasRepository, VagasRepository } from 'src/application/repositories/vagas.repository';
+import { IVagasRepository, VagasRepository } from '../../../application/repositories/vagas.repository';
 
 @Injectable()
 export class DeleteVagaByIdUseCase {
