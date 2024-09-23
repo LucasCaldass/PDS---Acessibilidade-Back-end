@@ -13,8 +13,9 @@ async function bootstrap() {
     .addTag('Vagas')
     .build();
 
+  const swaggerCssUrl: string = process.env.SWAGGER_CSS_URL;
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api', app, document, { customCssUrl: swaggerCssUrl });
 
   await app.listen(process.env.PORT || 3000);
   console.log(`Listening at http://localhost:${process.env.PORT}`)
