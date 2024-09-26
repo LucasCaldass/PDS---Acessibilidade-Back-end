@@ -1,12 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsEnum, IsNotEmpty, IsNumber, IsString } from "class-validator";
-
-export enum TipoDeficienciaEnum {
-  VISUAL = 'VISUAL',
-  AUDITIVA = 'AUDITIVA',
-  MOTORA = 'MOTORA',
-  MENTAL = 'MENTAL'
-}
+import { TipoDeficienciaEnum } from '../../../infrastructure/data/entities/vaga.entity';
 
 export class CreateVagaRequest {
   @ApiProperty()

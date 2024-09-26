@@ -1,12 +1,12 @@
 import { Controller, Post, Body, Get, Param, Delete, Query } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { CreateVagaRequest } from './requests/create-vaga.request';
-import { CreateVagaUseCase } from 'src/application/usecases/vagas/create-vaga.usecase';
-import { Vaga } from 'src/domain/models/vaga.model';
-import { ListAllVagasUseCase } from 'src/application/usecases/vagas/list-all-vagas.usecase';
-import { FindVagaByIdUseCase } from 'src/application/usecases/vagas/find-vaga-by-id.usecase';
-import { DeleteVagaByIdUseCase } from 'src/application/usecases/vagas/delete-vaga-by-id.usecase';
-import { SearchVagasUseCase } from 'src/application/usecases/vagas/search-vagas.usecase';
+import { CreateVagaUseCase } from '../../application/usecases/vagas/create-vaga.usecase';
+import { Vaga } from '../../domain/models/vaga.model';
+import { ListAllVagasUseCase } from '../../application/usecases/vagas/list-all-vagas.usecase';
+import { FindVagaByIdUseCase } from '../../application/usecases/vagas/find-vaga-by-id.usecase';
+import { DeleteVagaByIdUseCase } from '../../application/usecases/vagas/delete-vaga-by-id.usecase';
+import { SearchVagasUseCase } from '../../application/usecases/vagas/search-vagas.usecase';
 
 @ApiTags('Vagas')
 @Controller('vagas')

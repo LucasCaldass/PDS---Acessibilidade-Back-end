@@ -14,8 +14,16 @@ async function bootstrap() {
     .addTag('Usuarios')
     .build();
 
+  const swaggerCDN: string = process.env.SWAGGER_CDN_URL;
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api', app, document,
+    {
+      customCssUrl: `${swaggerCDN}/swagger-ui.css`,
+      customJs: [
+        `${swaggerCDN}/swagger-ui-bundle.js`,
+        `${swaggerCDN}/swagger-ui-standalone-preset.js`,
+      ]
+    });
 
   await app.listen(process.env.PORT || 3000);
   console.log(`Listening at http://localhost:${process.env.PORT}`)
