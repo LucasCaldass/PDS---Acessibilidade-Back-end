@@ -29,13 +29,18 @@ export class VagasRepositoryAdapter implements VagasRepository {
     await this.vagaRepository.delete(id)
   }
 
-  async search(query: string): Promise<Array<Vaga>> {
-    return await this.vagaRepository.find({
+  async search(query: string, tipoDeficiencia?: string): Promise<Array<Vaga>> {
+    return (await this.vagaRepository.find({
       where: [
         { titulo: ILike(`%${query}%`) },
         { cargo: ILike(`%${query}%`) },
         { descricao: ILike(`%${query}%`) },
       ]
-    });
+    })).filter(
+      vaga =>
+        tipoDeficiencia && tipoDeficiencia.length > 0
+          ? (tipoDeficiencia.split(',')).includes(vaga.tipoDeficiencia)
+          : true
+    );
   }
 }
