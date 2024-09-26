@@ -63,7 +63,7 @@ $ npm run migration:generate --name=<MigrationName>
 ```
 ex:
 ```bash
-$ npm run migraiton:generate --name=AddTableVagas
+$ npm run migration:generate --name=AddTableVagas
 ```
 
 ## Executando a migration
