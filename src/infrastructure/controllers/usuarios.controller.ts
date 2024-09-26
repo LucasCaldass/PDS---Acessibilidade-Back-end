@@ -1,10 +1,10 @@
 import { Controller, Post, Body, Get, Param, Delete, Query } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { CreateUsuarioUseCase } from 'src/application/usecases/usuarios/create-usuario.usecase';
-import { DeleteUsuarioByIdUseCase } from 'src/application/usecases/usuarios/delete-usuario-by-id.usecase';
-import { FindUsuarioByIdUseCase } from 'src/application/usecases/usuarios/find-usuario-by-id.usecase';
-import { ListAllUsuariosUseCase } from 'src/application/usecases/usuarios/list-all-usuarios.usecase';
-import { Usuario } from 'src/domain/models/usuario.model';
+import { CreateUsuarioUseCase } from '../../application/usecases/usuarios/create-usuario.usecase';
+import { DeleteUsuarioByIdUseCase } from '../../application/usecases/usuarios/delete-usuario-by-id.usecase';
+import { FindUsuarioByIdUseCase } from '../../application/usecases/usuarios/find-usuario-by-id.usecase';
+import { ListAllUsuariosUseCase } from '../../application/usecases/usuarios/list-all-usuarios.usecase';
+import { Usuario } from '../../domain/models/usuario.model';
 import { CreateUsuarioRequest } from './requests/create-usuario.request';
 
 

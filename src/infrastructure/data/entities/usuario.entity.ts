@@ -1,8 +1,13 @@
-import { TipoDeficienciaEnum } from 'src/infrastructure/controllers/requests/create-vaga.request';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { TipoGeneroEnum } from 'src/infrastructure/controllers/requests/create-usuario.request';
+import { TipoDeficienciaEnum } from './vaga.entity';
 
-@Entity('usuario')
+export enum TipoGeneroEnum {
+  MASCULINO = 'MASCULINO',
+  FEMININO = 'FEMININO',
+  OUTRO = 'OUTRO'
+}
+
+@Entity('usuarios')
 export class UsuarioEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;

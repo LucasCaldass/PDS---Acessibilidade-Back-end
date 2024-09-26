@@ -9,13 +9,13 @@ import { ListAllVagasUseCase } from './usecases/vagas/list-all-vagas.usecase';
 import { FindVagaByIdUseCase } from './usecases/vagas/find-vaga-by-id.usecase';
 import { DeleteVagaByIdUseCase } from './usecases/vagas/delete-vaga-by-id.usecase';
 import { SearchVagasUseCase } from "./usecases/vagas/search-vagas.usecase";
-import { UsuarioEntity } from "src/infrastructure/data/entities/usuario.entity";
+import { UsuarioEntity } from "../infrastructure/data/entities/usuario.entity";
 import { CreateUsuarioUseCase } from "./usecases/usuarios/create-usuario.usecase";
 import { ListAllUsuariosUseCase } from "./usecases/usuarios/list-all-usuarios.usecase";
 import { FindUsuarioByIdUseCase } from "./usecases/usuarios/find-usuario-by-id.usecase";
 import { DeleteUsuarioByIdUseCase } from "./usecases/usuarios/delete-usuario-by-id.usecase";
 import { IUsuariosRepository } from "./repositories/usuario.repository";
-import { UsuariosRepositoryAdapter } from "src/infrastructure/adapters/usuarios.repository.adapter";
+import { UsuariosRepositoryAdapter } from "../infrastructure/adapters/usuarios.repository.adapter";
 
 @Module({
   imports: [DomainModule, TypeOrmModule.forFeature([VagaEntity, UsuarioEntity])],

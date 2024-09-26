@@ -1,4 +1,4 @@
-import { Usuario } from "src/domain/models/usuario.model";
+import { Usuario } from "../../domain/models/usuario.model";
 
 export const IUsuariosRepository = 'UsuariosRepository'
 

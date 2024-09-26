@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IUsuariosRepository, UsuariosRepository } from 'src/application/repositories/usuario.repository';
+import { IUsuariosRepository, UsuariosRepository } from '../../../application/repositories/usuario.repository';
 
 @Injectable()
 export class DeleteUsuarioByIdUseCase {

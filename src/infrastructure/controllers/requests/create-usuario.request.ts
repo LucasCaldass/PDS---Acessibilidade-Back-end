@@ -1,12 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { ArrayNotEmpty, IsArray, IsEnum, IsNotEmpty, IsNumber, IsPhoneNumber, IsPositive, IsString, IsUrl, isURL } from "class-validator";
-import { TipoDeficienciaEnum } from 'src/infrastructure/controllers/requests/create-vaga.request';
-
-export enum TipoGeneroEnum {
-  MASCULINO = 'MASCULINO',
-  FEMININO = 'FEMININO',
-  OUTRO = 'OUTRO'
-}
+import { ArrayNotEmpty, IsArray, IsEnum, IsNotEmpty, IsNumber, IsPositive, IsString, IsUrl } from "class-validator";
+import { TipoDeficienciaEnum } from '../../../infrastructure/data/entities/vaga.entity';
+import { TipoGeneroEnum } from '../../../infrastructure/data/entities/usuario.entity';
 
 export class CreateUsuarioRequest {
   @ApiProperty()
@@ -22,7 +17,7 @@ export class CreateUsuarioRequest {
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsEnum(TipoGeneroEnum, {message: "Genero não reconhecido"})
+  @IsEnum(TipoGeneroEnum, { message: "Genero não reconhecido" })
   genero: TipoGeneroEnum;
 
   @ApiProperty()
@@ -38,14 +33,14 @@ export class CreateUsuarioRequest {
   @ApiProperty()
   @IsArray()
   @ArrayNotEmpty()
-  @IsEnum(TipoDeficienciaEnum, {each: true, message: "deficiencia não reconhecida!"})
+  @IsEnum(TipoDeficienciaEnum, { each: true, message: "deficiencia não reconhecida!" })
   tipoDeficiencia: TipoDeficienciaEnum[];
 
   @ApiProperty()
   @IsArray()
   @ArrayNotEmpty()
-  @IsString({each: true})
-  @IsNotEmpty({each: true})
+  @IsString({ each: true })
+  @IsNotEmpty({ each: true })
   cargosPretendidos: string[];
 
   @ApiProperty()

@@ -1,5 +1,5 @@
-import { TipoDeficienciaEnum } from "src/infrastructure/controllers/requests/create-vaga.request";
-import { TipoGeneroEnum } from "src/infrastructure/controllers/requests/create-usuario.request";
+import { TipoGeneroEnum } from "../../infrastructure/data/entities/usuario.entity";
+import { TipoDeficienciaEnum } from "../../infrastructure/data/entities/vaga.entity";
 
 export type Usuario = {
   nome: string;

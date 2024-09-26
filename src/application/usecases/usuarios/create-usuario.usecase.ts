@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Usuario } from 'src/domain/models/usuario.model';
-import { IUsuariosRepository, UsuariosRepository } from 'src/application/repositories/usuario.repository';
+import { Usuario } from '../../../domain/models/usuario.model';
+import { IUsuariosRepository, UsuariosRepository } from '../../../application/repositories/usuario.repository';
 
 @Injectable()
 export class CreateUsuarioUseCase {
