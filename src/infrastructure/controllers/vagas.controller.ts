@@ -1,5 +1,5 @@
 import { Controller, Post, Body, Get, Param, Delete, Query } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiOperation, ApiResponse, ApiTags, ApiQuery } from "@nestjs/swagger";
 import { CreateVagaRequest } from './requests/create-vaga.request';
 import { CreateVagaUseCase } from '../../application/usecases/vagas/create-vaga.usecase';
 import { Vaga } from '../../domain/models/vaga.model';
@@ -35,8 +35,9 @@ export class VagasController {
     status: 200,
     description: 'Lista de vagas encontradas ou array vazio',
   })
-  async search(@Query('q') query: string) {
-    return await this.searchVagasUseCase.execute(query);
+  @ApiQuery({ name: 'deficiencia', required: false, description: 'Tipo de deficiência' })
+  async search(@Query('q') query: string, @Query('deficiencia') tipoDeficiencia?: string) {
+    return await this.searchVagasUseCase.execute(query, tipoDeficiencia);
   }
 
   @Get()

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ILike, Repository } from 'typeorm';
+import { Repository, Brackets } from 'typeorm';
 import { Vaga } from '../../domain/models/vaga.model';
 import { VagasRepository } from '../../application/repositories/vagas.repository';
 import { VagaEntity } from '../data/entities/vaga.entity';
@@ -29,13 +29,17 @@ export class VagasRepositoryAdapter implements VagasRepository {
     await this.vagaRepository.delete(id)
   }
 
-  async search(query: string): Promise<Array<Vaga>> {
-    return await this.vagaRepository.find({
-      where: [
-        { titulo: ILike(`%${query}%`) },
-        { cargo: ILike(`%${query}%`) },
-        { descricao: ILike(`%${query}%`) },
-      ]
-    });
+  async search(query: string, tipoDeficiencia?: string): Promise<Array<Vaga>> {
+    return await this.vagaRepository
+    .createQueryBuilder('vaga')
+    .where(
+      new Brackets(qb => {
+        qb.where('vaga.titulo ILIKE :query', { query: `%${query}%` })
+          .orWhere('vaga.cargo ILIKE :query', { query: `%${query}%` })
+          .orWhere('vaga.descricao ILIKE :query', { query: `%${query}%` })
+      })
+    )
+    .andWhere(tipoDeficiencia ? 'vaga.tipoDeficiencia IN (:...tipoDeficiencia)' : '1=1' ,{ tipoDeficiencia: tipoDeficiencia ? tipoDeficiencia.split(',') : []} )
+    .getMany();
   }
 }
