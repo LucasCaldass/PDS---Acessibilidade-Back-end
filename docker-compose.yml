@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   pds-database:
     container_name: pds-database

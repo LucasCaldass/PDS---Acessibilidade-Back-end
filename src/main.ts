@@ -11,6 +11,7 @@ async function bootstrap() {
     .setTitle('Api Vagas PCDs')
     .setVersion('1.0')
     .addTag('Vagas')
+    .addTag('Usuarios')
     .build();
 
   const swaggerCDN: string = process.env.SWAGGER_CDN_URL;

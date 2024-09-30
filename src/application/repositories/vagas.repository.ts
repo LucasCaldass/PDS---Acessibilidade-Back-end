@@ -7,5 +7,5 @@ export interface VagasRepository {
   findAll(): Promise<Array<Vaga>>;
   findById(id: string): Promise<Vaga>;
   deleteById(id: string): Promise<void>;
-  search(params: any): Promise<Array<Vaga>>;
+  search(params: any, tipoDeficiencia?: string): Promise<Array<Vaga>>;
 }
