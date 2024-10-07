@@ -7,6 +7,7 @@ export class CreateVagaUseCase {
   constructor(@Inject(IVagasRepository) private readonly vagasRepository: VagasRepository) { }
 
   async execute(vaga: Vaga): Promise<Vaga> {
+    
     return this.vagasRepository.create(vaga);
   }
 }

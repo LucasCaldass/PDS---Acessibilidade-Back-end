@@ -16,6 +16,12 @@ import { FindUsuarioByIdUseCase } from "./usecases/usuarios/find-usuario-by-id.u
 import { DeleteUsuarioByIdUseCase } from "./usecases/usuarios/delete-usuario-by-id.usecase";
 import { IUsuariosRepository } from "./repositories/usuario.repository";
 import { UsuariosRepositoryAdapter } from "../infrastructure/adapters/usuarios.repository.adapter";
+import { CreateEmpresaUseCase } from "./usecases/empresas/create-empresa.usecase";
+import { ListAllEmpresasUseCase } from "./usecases/empresas/list-all-empresas.usecase";
+import { FindEmpresaByIdUseCase } from "./usecases/empresas/find-empresa-by-id.usecase";
+import { DeleteEmpresaByIdUseCase } from "./usecases/empresas/delete-empresa-by-id.usecase";
+import { IEmpresasRepository } from "./repositories/empresas.repository";
+import { EmpresasRepositoryAdapter } from "src/infrastructure/adapters/empresas.repository.adapter";
 
 @Module({
   imports: [DomainModule, TypeOrmModule.forFeature([VagaEntity, UsuarioEntity])],
@@ -29,8 +35,13 @@ import { UsuariosRepositoryAdapter } from "../infrastructure/adapters/usuarios.r
     ListAllUsuariosUseCase,
     FindUsuarioByIdUseCase,
     DeleteUsuarioByIdUseCase,
+    CreateEmpresaUseCase,
+    ListAllEmpresasUseCase,
+    FindEmpresaByIdUseCase,
+    DeleteEmpresaByIdUseCase,
     { provide: IVagasRepository, useClass: VagasRepositoryAdapter },
-    { provide: IUsuariosRepository, useClass: UsuariosRepositoryAdapter}
+    { provide: IUsuariosRepository, useClass: UsuariosRepositoryAdapter},
+    { provide: IEmpresasRepository, useClass: EmpresasRepositoryAdapter}
   ],
   exports: [
     CreateVagaUseCase,
@@ -42,6 +53,10 @@ import { UsuariosRepositoryAdapter } from "../infrastructure/adapters/usuarios.r
     ListAllUsuariosUseCase,
     FindUsuarioByIdUseCase,
     DeleteUsuarioByIdUseCase,
+    CreateEmpresaUseCase,
+    ListAllEmpresasUseCase,
+    FindEmpresaByIdUseCase,
+    DeleteEmpresaByIdUseCase,
   ]
 })
 export class ApplicationModule { }
