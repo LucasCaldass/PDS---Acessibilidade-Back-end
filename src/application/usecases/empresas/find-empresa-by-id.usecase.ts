@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Empresa } from 'src/domain/models/empresa.model';
-import { IEmpresasRepository, EmpresasRepository } from 'src/application/repositories/empresas.repository';
+import { Empresa } from '../../../domain/models/empresa.model';
+import { IEmpresasRepository, EmpresasRepository } from '../../../application/repositories/empresas.repository';
 
 @Injectable()
 export class FindEmpresaByIdUseCase {
