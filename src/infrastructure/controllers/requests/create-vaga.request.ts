@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsEnum, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsEnum, IsNotEmpty, IsNumber, IsString, IsUUID } from "class-validator";
 import { TipoDeficienciaEnum } from '../../../infrastructure/data/entities/vaga.entity';
+import { Empresa } from 'src/domain/models/empresa.model';
 
 export class CreateVagaRequest {
   @ApiProperty()
@@ -52,4 +53,8 @@ export class CreateVagaRequest {
   @IsNotEmpty()
   @IsString()
   localizacao: string;
+
+  @ApiProperty()
+  @IsUUID()
+  empresa: Empresa;
 }

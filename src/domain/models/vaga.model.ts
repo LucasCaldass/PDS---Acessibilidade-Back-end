@@ -1,4 +1,5 @@
 import { TipoDeficienciaEnum } from "../../infrastructure/data/entities/vaga.entity";
+import { Empresa } from "./empresa.model";
 
 export type Vaga = {
   titulo: string;
@@ -10,5 +11,6 @@ export type Vaga = {
   endereco: string;
   remota: boolean;
   informacoesAdicionais?: string;
+  empresa:Empresa;
 }
 

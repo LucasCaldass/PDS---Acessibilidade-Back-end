@@ -22,12 +22,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      PORT: 3000
-      DB_HOST: pds-database
-      DB_PORT: 5432
-      DB_USER: postgres
-      DB_PASS: postgres
-      DB_NAME: pds-db
+      DATABASE_URL: postgresql://postgres:postgres@pds-database:5432/pds-db
     ports:
       - '3000:3000'
     depends_on:
