@@ -1,14 +1,23 @@
-import { TipoGeneroEnum } from "../../infrastructure/data/entities/usuario.entity";
+import { Curso, ExperienciaProfissional, Habilidades, Idioma, TipoGeneroEnum } from "../../infrastructure/data/entities/usuario.entity";
 import { TipoDeficienciaEnum } from "../../infrastructure/data/entities/vaga.entity";
 
 export type Usuario = {
   nome: string;
-  idade: number;
-  genero: TipoGeneroEnum;
-  endereco: string;
+  email: string;
+  senha: string;
   telefone: string;
-  tipoDeficiencia: TipoDeficienciaEnum[];
-  cargosPretendidos: string[];
-  linkedin: string;
+  cidade: string;
+  cargo_desejado: string;
+  salario_desejado: number;
+  genero: TipoGeneroEnum;
+  tipo_deficiencia: TipoDeficienciaEnum;
+  resumo_curriculo: string;
+  instituicao: string;
+  formacao: string;
+  cursos: Curso[];
+  experiencias_profissionais: ExperienciaProfissional[];
+  idiomas: Idioma[];
+  habilidades_qualificacoes:Habilidades[];
+  linkedin?: string;
 }
 

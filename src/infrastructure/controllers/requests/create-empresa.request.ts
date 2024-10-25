@@ -1,26 +1,49 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { ArrayNotEmpty, IsArray, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString, IsUrl } from "class-validator";
+import { IsArray, IsEmail, IsInt, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString, IsUrl } from "class-validator";
 
 export class CreateEmpresaRequest {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  nome: string;
+  nome_empresa: string;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  areaAtuacao: string;
+  cnpj: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsPositive()
+  @IsInt()
+  @IsNumber()
+  numero_funcionarios: number;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  endereco: string;
+  cidade: string;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  telefone: string;
+  @IsEmail()
+  email: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  senha: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  telefone_fixo: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  sobre_empresa: string;
 
   @ApiProperty()
   @IsArray()
@@ -31,5 +54,6 @@ export class CreateEmpresaRequest {
   @IsNotEmpty()
   @IsString()
   @IsUrl()
-  linkedin: string;
+  @IsOptional()
+  linkedin?: string;
 }

@@ -1,5 +1,5 @@
 import { Controller, Post, Body, Get, Param, Delete, Query } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiConflictResponse, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { CreateEmpresaUseCase } from 'src/application/usecases/empresas/create-empresa.usecase';
 import { ListAllEmpresasUseCase } from 'src/application/usecases/empresas/list-all-empresas.usecase';
 import { FindEmpresaByIdUseCase } from 'src/application/usecases/empresas/find-empresa-by-id.usecase';
@@ -21,8 +21,12 @@ export class EmpresasController {
   @Post()
   @ApiOperation({ summary: 'Criar Empresa' })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Criar Empresa',
+  })
+  @ApiConflictResponse({
+    status: 400, 
+    description: 'E-mail já está em uso.',
   })
   async create(@Body() data: CreateEmpresaRequest): Promise<Empresa> {
     return await this.createEmpresaUseCase.execute(data);
