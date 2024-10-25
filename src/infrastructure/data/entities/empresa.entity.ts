@@ -31,7 +31,7 @@ export class EmpresaEntity {
   sobre_empresa: string;
 
   @OneToMany(() => VagaEntity, (vaga) => vaga.empresa, { cascade: true, nullable: true })
-  vagasAnunciadas: VagaEntity[] = [];
+  vagasAnunciadas: VagaEntity[];
 
   @Column({ type: 'varchar', length: 255, nullable: true, default: "" })
   linkedin: string;
