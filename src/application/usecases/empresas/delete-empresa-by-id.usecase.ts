@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IEmpresasRepository, EmpresasRepository } from 'src/application/repositories/empresas.repository';
+import { IEmpresasRepository, EmpresasRepository } from '../../../application/repositories/empresas.repository';
 
 @Injectable()
 export class DeleteEmpresaByIdUseCase {

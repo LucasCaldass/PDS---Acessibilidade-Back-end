@@ -1,10 +1,10 @@
 import { Controller, Post, Body, Get, Param, Delete, Query } from '@nestjs/common';
 import { ApiConflictResponse, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { CreateEmpresaUseCase } from 'src/application/usecases/empresas/create-empresa.usecase';
-import { ListAllEmpresasUseCase } from 'src/application/usecases/empresas/list-all-empresas.usecase';
-import { FindEmpresaByIdUseCase } from 'src/application/usecases/empresas/find-empresa-by-id.usecase';
-import { DeleteEmpresaByIdUseCase } from 'src/application/usecases/empresas/delete-empresa-by-id.usecase';
-import { Empresa } from 'src/domain/models/empresa.model';
+import { CreateEmpresaUseCase } from '../../application/usecases/empresas/create-empresa.usecase';
+import { ListAllEmpresasUseCase } from '../../application/usecases/empresas/list-all-empresas.usecase';
+import { FindEmpresaByIdUseCase } from '../../application/usecases/empresas/find-empresa-by-id.usecase';
+import { DeleteEmpresaByIdUseCase } from '../../application/usecases/empresas/delete-empresa-by-id.usecase';
+import { Empresa } from '../../domain/models/empresa.model';
 import { CreateEmpresaRequest } from './requests/create-empresa.request';
 
 
