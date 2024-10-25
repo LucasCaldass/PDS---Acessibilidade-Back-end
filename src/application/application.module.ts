@@ -21,8 +21,8 @@ import { ListAllEmpresasUseCase } from "./usecases/empresas/list-all-empresas.us
 import { FindEmpresaByIdUseCase } from "./usecases/empresas/find-empresa-by-id.usecase";
 import { DeleteEmpresaByIdUseCase } from "./usecases/empresas/delete-empresa-by-id.usecase";
 import { IEmpresasRepository } from "./repositories/empresas.repository";
-import { EmpresasRepositoryAdapter } from "src/infrastructure/adapters/empresas.repository.adapter";
-import { EmpresaEntity } from "src/infrastructure/data/entities/empresa.entity";
+import { EmpresasRepositoryAdapter } from "../infrastructure/adapters/empresas.repository.adapter";
+import { EmpresaEntity } from "../infrastructure/data/entities/empresa.entity";
 
 @Module({
   imports: [DomainModule, TypeOrmModule.forFeature([VagaEntity, UsuarioEntity, EmpresaEntity])],

@@ -1,4 +1,4 @@
-import { Empresa } from "src/domain/models/empresa.model";
+import { Empresa } from "../../domain/models/empresa.model";
 
 export const IEmpresasRepository = 'EmpresasRepository'
 
