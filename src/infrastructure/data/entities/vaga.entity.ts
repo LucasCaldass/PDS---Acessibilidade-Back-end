@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { EmpresaEntity } from './empresa.entity';
 
 export enum TipoDeficienciaEnum {
   VISUAL = 'VISUAL',
@@ -40,4 +41,7 @@ export class VagaEntity {
 
   @Column({ type: 'varchar', length: 255 })
   localizacao: string;
+
+  @ManyToOne(() => EmpresaEntity, (empresa) => empresa.vagasAnunciadas)
+  empresa: EmpresaEntity;
 }

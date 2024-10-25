@@ -1,5 +1,5 @@
 import { Controller, Post, Body, Get, Param, Delete, Query } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiConflictResponse, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { CreateUsuarioUseCase } from '../../application/usecases/usuarios/create-usuario.usecase';
 import { DeleteUsuarioByIdUseCase } from '../../application/usecases/usuarios/delete-usuario-by-id.usecase';
 import { FindUsuarioByIdUseCase } from '../../application/usecases/usuarios/find-usuario-by-id.usecase';
@@ -21,8 +21,12 @@ export class UsuariosController {
   @Post()
   @ApiOperation({ summary: 'Criar Usuario' })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Criar Usuario',
+  })
+  @ApiConflictResponse({
+    status: 400, 
+    description: 'E-mail já está em uso.',
   })
   async create(@Body() data: CreateUsuarioRequest): Promise<Usuario> {
     return await this.createUsuarioUseCase.execute(data);
