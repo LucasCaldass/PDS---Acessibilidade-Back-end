@@ -13,3 +13,6 @@ export type Empresa = {
   linkedin?: string;
 }
 
+export type EmpresaResponse = Empresa & {
+  id: string;
+}

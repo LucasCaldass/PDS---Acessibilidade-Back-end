@@ -6,7 +6,7 @@ import { FindEmpresaByIdUseCase } from '../../application/usecases/empresas/find
 import { DeleteEmpresaByIdUseCase } from '../../application/usecases/empresas/delete-empresa-by-id.usecase';
 import { Empresa } from '../../domain/models/empresa.model';
 import { CreateEmpresaRequest } from './requests/create-empresa.request';
-
+import * as bcrypt from 'bcrypt';
 
 @ApiTags('Empresas')
 @Controller('empresas')
@@ -21,15 +21,17 @@ export class EmpresasController {
   @Post()
   @ApiOperation({ summary: 'Criar Empresa' })
   @ApiResponse({
-    status: 200,
-    description: 'Criar Empresa',
+    status: 201,
+    description: 'Empresa Criada',
   })
   @ApiConflictResponse({
-    status: 400, 
+    status: 400,
     description: 'E-mail já está em uso.',
   })
   async create(@Body() data: CreateEmpresaRequest): Promise<Empresa> {
-    return await this.createEmpresaUseCase.execute(data);
+    const salt = process.env.HASH_SAHT;
+    const hashedSenha = await bcrypt.hash(data.senha, salt);
+    return await this.createEmpresaUseCase.execute({ ...data, senha: hashedSenha });
   }
 
   @Get()

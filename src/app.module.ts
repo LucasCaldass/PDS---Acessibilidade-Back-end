@@ -5,6 +5,7 @@ import { ApplicationModule } from './application/application.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import typeorm from './config/ormconfig';
 import { InfrastructureModule } from './infrastructure/infrastructure.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { InfrastructureModule } from './infrastructure/infrastructure.module';
     }),
     DomainModule,
     ApplicationModule,
-    InfrastructureModule
+    InfrastructureModule,
+    AuthModule
   ],
   providers: [],
 })

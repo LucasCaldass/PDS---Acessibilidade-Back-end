@@ -71,6 +71,8 @@ import { ListApplicationsUseCase } from "./usecases/candidaturas/list-applicatio
     ListAllEmpresasUseCase,
     FindEmpresaByIdUseCase,
     DeleteEmpresaByIdUseCase,
+    IUsuariosRepository,
+    IEmpresasRepository
   ]
 })
 export class ApplicationModule { }

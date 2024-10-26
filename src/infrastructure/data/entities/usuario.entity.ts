@@ -45,7 +45,7 @@ export class UsuarioEntity {
   @Column({ type: 'varchar', length: 255, unique: true })
   email: string;
 
-  @Column({ type: 'varchar', length: 20 })
+  @Column({ type: 'varchar', length: 200 })
   senha: string;
 
   @Column({ type: 'varchar', length: 20 })
