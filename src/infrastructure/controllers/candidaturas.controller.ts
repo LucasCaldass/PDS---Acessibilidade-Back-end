@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post, Req } from "@nestjs/common";
-import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { ApplyToVagaUseCase } from "../../application/usecases/candidaturas/apply-vaga.usecase";
 import { ApplyVagaRequest } from "./requests/apply-vaga.request";
 import { ListApplicationsUseCase } from "../../application/usecases/candidaturas/list-applications.usecase";
@@ -19,6 +19,7 @@ export class CandidaturasController {
     status: 200,
     description: 'Aplicação concluída',
   })
+  @ApiBearerAuth()
   async apply(@Body() data: ApplyVagaRequest) {
     return await this.applyVagaUseCase.execute(data);
   }
@@ -29,6 +30,7 @@ export class CandidaturasController {
     status: 200,
     description: 'Lista de Vagas'
   })
+  @ApiBearerAuth()
   async listAllByUserId(@Req() req: any) {
     const userId: string = req.user.id;
     return await this.listApplicationsUseCase.execute(userId);

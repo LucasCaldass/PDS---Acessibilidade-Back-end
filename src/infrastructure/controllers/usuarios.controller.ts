@@ -1,11 +1,12 @@
 import { Controller, Post, Body, Get, Param, Delete, Query } from '@nestjs/common';
-import { ApiConflictResponse, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiConflictResponse, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { CreateUsuarioUseCase } from '../../application/usecases/usuarios/create-usuario.usecase';
 import { DeleteUsuarioByIdUseCase } from '../../application/usecases/usuarios/delete-usuario-by-id.usecase';
 import { FindUsuarioByIdUseCase } from '../../application/usecases/usuarios/find-usuario-by-id.usecase';
 import { ListAllUsuariosUseCase } from '../../application/usecases/usuarios/list-all-usuarios.usecase';
 import { Usuario } from '../../domain/models/usuario.model';
 import { CreateUsuarioRequest } from './requests/create-usuario.request';
+import { Public } from '../../auth/public-routes';
 
 
 @ApiTags('Usuarios')
@@ -18,6 +19,7 @@ export class UsuariosController {
     private readonly deleteUsuarioByIdUseCase: DeleteUsuarioByIdUseCase,
   ) { }
 
+  @Public()
   @Post()
   @ApiOperation({ summary: 'Criar Usuario' })
   @ApiResponse({
@@ -25,7 +27,7 @@ export class UsuariosController {
     description: 'Criar Usuario',
   })
   @ApiConflictResponse({
-    status: 400, 
+    status: 400,
     description: 'E-mail já está em uso.',
   })
   async create(@Body() data: CreateUsuarioRequest): Promise<Usuario> {
@@ -38,6 +40,7 @@ export class UsuariosController {
     description: 'Listar Usuario',
     type: Array<Usuario>
   })
+  @ApiBearerAuth()
   async listAll(): Promise<Usuario[]> {
     return await this.listAllUsuariosUseCase.execute();
   }
@@ -48,6 +51,7 @@ export class UsuariosController {
     status: 200,
     description: 'Encontrar Usuario',
   })
+  @ApiBearerAuth()
   async find(@Param('id') id: string): Promise<Usuario> {
     return await this.findUsuarioByIdUseCase.execute(id);
   }
@@ -58,6 +62,7 @@ export class UsuariosController {
     status: 200,
     description: 'Deletar Usuario',
   })
+  @ApiBearerAuth()
   async delete(@Param('id') id: string): Promise<void> {
     return await this.deleteUsuarioByIdUseCase.execute(id);
   }
