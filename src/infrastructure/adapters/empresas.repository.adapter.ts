@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Empresa } from '../../domain/models/empresa.model';
+import { Empresa, EmpresaResponse } from '../../domain/models/empresa.model';
 import { EmpresasRepository } from '../../application/repositories/empresas.repository';
 import { EmpresaEntity } from '../data/entities/empresa.entity';
 
@@ -23,6 +23,10 @@ export class EmpresasRepositoryAdapter implements EmpresasRepository {
 
   async findById(id: string): Promise<Empresa> {
     return await this.empresaRepository.findOneBy({ id });
+  }
+
+  async findByEmail(email: string): Promise<EmpresaResponse> {
+    return await this.empresaRepository.findOneBy({ email });
   }
 
   async deleteById(id: string): Promise<void> {

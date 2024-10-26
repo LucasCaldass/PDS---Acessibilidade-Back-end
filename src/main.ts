@@ -10,6 +10,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Api Vagas PCDs')
     .setVersion('1.0')
+    .addBearerAuth()
     .addTag('Vagas')
     .addTag('Usuarios')
     .build();

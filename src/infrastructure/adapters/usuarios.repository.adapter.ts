@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Usuario } from '../../domain/models/usuario.model';
+import { Usuario, UsuarioResponse } from '../../domain/models/usuario.model';
 import { UsuariosRepository } from '../../application/repositories/usuario.repository';
 import { UsuarioEntity } from '../data/entities/usuario.entity';
 
@@ -23,6 +23,10 @@ export class UsuariosRepositoryAdapter implements UsuariosRepository {
 
   async findById(id: string): Promise<Usuario> {
     return await this.usuarioRepository.findOneBy({ id });
+  }
+
+  async findByEmail(email: string): Promise<UsuarioResponse> {
+    return await this.usuarioRepository.findOneBy({ email });
   }
 
   async deleteById(id: string): Promise<void> {

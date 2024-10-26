@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { TipoDeficienciaEnum } from './vaga.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { CandidaturaEntity } from './candidatura.entity';
 
 export class Curso{
   nome: string;
@@ -28,6 +28,12 @@ export enum TipoGeneroEnum {
   OUTRO = 'OUTRO'
 }
 
+export enum TipoDeficienciaEnum {
+  VISUAL = 'VISUAL',
+  AUDITIVA = 'AUDITIVA',
+  MOTORA = 'MOTORA'
+};
+
 @Entity('usuarios')
 export class UsuarioEntity {
   @PrimaryGeneratedColumn('uuid')
@@ -39,7 +45,7 @@ export class UsuarioEntity {
   @Column({ type: 'varchar', length: 255, unique: true })
   email: string;
 
-  @Column({ type: 'varchar', length: 20 })
+  @Column({ type: 'varchar', length: 200 })
   senha: string;
 
   @Column({ type: 'varchar', length: 20 })
@@ -83,4 +89,7 @@ export class UsuarioEntity {
 
   @Column({ type: 'varchar', length: 255, nullable: true, default: "" })
   linkedin: string;
+
+  @OneToMany(() => CandidaturaEntity, candidatura => candidatura.usuario)
+  candidaturas: CandidaturaEntity[];
 }
