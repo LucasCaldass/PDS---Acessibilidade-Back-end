@@ -28,6 +28,7 @@ import { ICandidaturasRepository } from "./repositories/candidaturas.repository"
 import { CandidaturasRepositoryAdapter } from "../infrastructure/adapters/candidaturas.repository.adapter";
 import { ApplyToVagaUseCase } from "./usecases/candidaturas/apply-vaga.usecase";
 import { CandidaturaEntity } from "src/infrastructure/data/entities/candidatura.entity";
+import { ListApplicationsUseCase } from "./usecases/candidaturas/list-applications.usecase";
 
 @Module({
   imports: [DomainModule, TypeOrmModule.forFeature([VagaEntity, UsuarioEntity, EmpresaEntity, CandidaturaEntity])],
@@ -39,6 +40,7 @@ import { CandidaturaEntity } from "src/infrastructure/data/entities/candidatura.
     SearchVagasUseCase,
     SearchRecommendedVagasUseCase,
     ApplyToVagaUseCase,
+    ListApplicationsUseCase,
     CreateUsuarioUseCase,
     ListAllUsuariosUseCase,
     FindUsuarioByIdUseCase,
@@ -60,6 +62,7 @@ import { CandidaturaEntity } from "src/infrastructure/data/entities/candidatura.
     SearchVagasUseCase,
     SearchRecommendedVagasUseCase,
     ApplyToVagaUseCase,
+    ListApplicationsUseCase,
     CreateUsuarioUseCase,
     ListAllUsuariosUseCase,
     FindUsuarioByIdUseCase,

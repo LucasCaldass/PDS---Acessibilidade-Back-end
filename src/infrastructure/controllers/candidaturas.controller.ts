@@ -1,7 +1,8 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post, Req } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { ApplyToVagaUseCase } from "../../application/usecases/candidaturas/apply-vaga.usecase";
 import { ApplyVagaRequest } from "./requests/apply-vaga.request";
+import { ListApplicationsUseCase } from "../../application/usecases/candidaturas/list-applications.usecase";
 
 @ApiTags('Candidaturas')
 @Controller('candidaturas')
@@ -9,7 +10,7 @@ export class CandidaturasController {
 
   constructor(
     private readonly applyVagaUseCase: ApplyToVagaUseCase,
-    // private readonly listApplicationsUseCase: ListApplicationsUseCase,
+    private readonly listApplicationsUseCase: ListApplicationsUseCase,
   ) { }
 
   @Post()
@@ -22,9 +23,14 @@ export class CandidaturasController {
     return await this.applyVagaUseCase.execute(data);
   }
 
-  // @Get()
-  // @ApiOperation({ summary: 'Listar candidaturas por usuário' })
-  // async listAllByUserId(@Param('id') id: string) {
-  //   return await this.listApplicationsUseCase.execute(id);
-  // }
+  @Get()
+  @ApiOperation({ summary: 'Listar candidaturas por usuário' })
+  @ApiResponse({
+    status: 200,
+    description: 'Lista de Vagas'
+  })
+  async listAllByUserId(@Req() req: any) {
+    const userId: string = req.user.id;
+    return await this.listApplicationsUseCase.execute(userId);
+  }
 }

@@ -20,4 +20,13 @@ export class CandidaturasRepositoryAdapter implements CandidaturasRepository {
 
     return await this.candidaturaRepository.save(candidatura);
   }
+
+  async findAllByUserId(userId: string) {
+    return await this.candidaturaRepository
+      .createQueryBuilder('candidatura')
+      .innerJoinAndSelect('candidatura.vaga', 'vaga')
+      .select(['vaga', 'candidatura.status'])
+      .where('candidatura.usuarioId = :usuarioId', { usuarioId: userId })
+      .getMany();
+  }
 }
