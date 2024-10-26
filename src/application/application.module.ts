@@ -23,6 +23,7 @@ import { DeleteEmpresaByIdUseCase } from "./usecases/empresas/delete-empresa-by-
 import { IEmpresasRepository } from "./repositories/empresas.repository";
 import { EmpresasRepositoryAdapter } from "../infrastructure/adapters/empresas.repository.adapter";
 import { EmpresaEntity } from "../infrastructure/data/entities/empresa.entity";
+import { SearchRecommendedVagasUseCase } from "./usecases/vagas/search-recommended-vagas.usecase";
 
 @Module({
   imports: [DomainModule, TypeOrmModule.forFeature([VagaEntity, UsuarioEntity, EmpresaEntity])],
@@ -32,6 +33,7 @@ import { EmpresaEntity } from "../infrastructure/data/entities/empresa.entity";
     FindVagaByIdUseCase,
     DeleteVagaByIdUseCase,
     SearchVagasUseCase,
+    SearchRecommendedVagasUseCase,
     CreateUsuarioUseCase,
     ListAllUsuariosUseCase,
     FindUsuarioByIdUseCase,
@@ -50,6 +52,7 @@ import { EmpresaEntity } from "../infrastructure/data/entities/empresa.entity";
     FindVagaByIdUseCase,
     DeleteVagaByIdUseCase,
     SearchVagasUseCase,
+    SearchRecommendedVagasUseCase,
     CreateUsuarioUseCase,
     ListAllUsuariosUseCase,
     FindUsuarioByIdUseCase,

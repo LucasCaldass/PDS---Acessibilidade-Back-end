@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Delete, Query, Req } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags, ApiQuery } from "@nestjs/swagger";
 import { CreateVagaRequest } from './requests/create-vaga.request';
 import { CreateVagaUseCase } from '../../application/usecases/vagas/create-vaga.usecase';
@@ -7,6 +7,7 @@ import { ListAllVagasUseCase } from '../../application/usecases/vagas/list-all-v
 import { FindVagaByIdUseCase } from '../../application/usecases/vagas/find-vaga-by-id.usecase';
 import { DeleteVagaByIdUseCase } from '../../application/usecases/vagas/delete-vaga-by-id.usecase';
 import { SearchVagasUseCase } from '../../application/usecases/vagas/search-vagas.usecase';
+import { SearchRecommendedVagasUseCase } from '../../application/usecases/vagas/search-recommended-vagas.usecase';
 
 @ApiTags('Vagas')
 @Controller('vagas')
@@ -17,6 +18,7 @@ export class VagasController {
     private readonly findVagaByIdUseCase: FindVagaByIdUseCase,
     private readonly deleteVagaByIdUseCase: DeleteVagaByIdUseCase,
     private readonly searchVagasUseCase: SearchVagasUseCase,
+    private readonly searchRecommendedVagasUseCase: SearchRecommendedVagasUseCase,
   ) { }
 
   @Post()
@@ -48,6 +50,17 @@ export class VagasController {
   })
   async listAll(): Promise<Vaga[]> {
     return await this.listAllVagasUseCase.execute();
+  }
+
+  @Get('vagas-recomendadas')
+  @ApiResponse({
+    status: 200,
+    description: 'Listar Vagas Recomendadas',
+    type: Array<Vaga>
+  })
+  async listRecommendedPositions(@Req() req: any): Promise<Vaga[]> {
+    const userId: string = req.user.id;
+    return await this.searchRecommendedVagasUseCase.execute(userId);
   }
 
   @Get(':id')

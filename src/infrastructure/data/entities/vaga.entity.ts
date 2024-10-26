@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { EmpresaEntity } from './empresa.entity';
 
 export enum TipoDeficienciaEnum {
@@ -44,4 +44,10 @@ export class VagaEntity {
 
   @ManyToOne(() => EmpresaEntity, (empresa) => empresa.vagasAnunciadas)
   empresa: EmpresaEntity;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 }
