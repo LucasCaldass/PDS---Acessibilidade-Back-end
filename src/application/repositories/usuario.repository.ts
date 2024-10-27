@@ -7,5 +7,6 @@ export interface UsuariosRepository {
   findAll(): Promise<Array<Usuario>>;
   findById(id: string): Promise<Usuario>;
   findByEmail(email: string): Promise<UsuarioResponse>;
+  searchCurriculos(query: string): Promise<UsuarioResponse[]>;
   deleteById(id: string): Promise<void>;
 }
