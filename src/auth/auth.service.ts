@@ -3,6 +3,7 @@ import { IUsuariosRepository, UsuariosRepository } from '../application/reposito
 import { EmpresasRepository, IEmpresasRepository } from '../application/repositories/empresas.repository';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
+import { Role } from './role.enum';
 
 export type AuthResponse = {
   token: string;
@@ -22,9 +23,9 @@ export class AuthService {
     const empresa = await this.empresasRepository.findByEmail(email);
 
     if (user && this.isPasswordValid(password, user.senha)) {
-      return this.generateToken(user.id, 'candidato')
+      return this.generateToken(user.id, Role.CANDIDATO)
     } else if (empresa && this.isPasswordValid(password, empresa.senha)) {
-      return this.generateToken(empresa.id, 'empresa');
+      return this.generateToken(empresa.id, Role.EMPRESA);
     }
 
     throw new UnauthorizedException();

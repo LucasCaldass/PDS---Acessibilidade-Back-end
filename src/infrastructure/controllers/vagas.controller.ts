@@ -8,6 +8,8 @@ import { FindVagaByIdUseCase } from '../../application/usecases/vagas/find-vaga-
 import { DeleteVagaByIdUseCase } from '../../application/usecases/vagas/delete-vaga-by-id.usecase';
 import { SearchVagasUseCase } from '../../application/usecases/vagas/search-vagas.usecase';
 import { SearchRecommendedVagasUseCase } from '../../application/usecases/vagas/search-recommended-vagas.usecase';
+import { Roles } from '../../auth/roles.decorator';
+import { Role } from '../../auth/role.enum';
 
 @ApiTags('Vagas')
 @Controller('vagas')
@@ -22,6 +24,7 @@ export class VagasController {
   ) { }
 
   @Post()
+  @Roles(Role.EMPRESA)
   @ApiOperation({ summary: 'Criar Vaga' })
   @ApiResponse({
     status: 201,
@@ -33,6 +36,7 @@ export class VagasController {
   }
 
   @Get('search')
+  @Roles(Role.CANDIDATO)
   @ApiOperation({ summary: 'Buscar por Vagas' })
   @ApiResponse({
     status: 200,
@@ -56,6 +60,7 @@ export class VagasController {
   }
 
   @Get('vagas-recomendadas')
+  @Roles(Role.CANDIDATO)
   @ApiResponse({
     status: 200,
     description: 'Listar Vagas Recomendadas',
@@ -79,6 +84,7 @@ export class VagasController {
   }
 
   @Delete(':id')
+  @Roles(Role.EMPRESA)
   @ApiOperation({ summary: 'Deletar Vaga' })
   @ApiResponse({
     status: 200,
