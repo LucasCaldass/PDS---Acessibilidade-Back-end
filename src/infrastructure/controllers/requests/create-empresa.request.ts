@@ -51,7 +51,6 @@ export class CreateEmpresaRequest {
   vagasAnunciadas?: any[];
 
   @ApiProperty()
-  @IsNotEmpty()
   @IsString()
   @IsUrl()
   @IsOptional()

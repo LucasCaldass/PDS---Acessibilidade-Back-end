@@ -23,15 +23,24 @@ import { DeleteEmpresaByIdUseCase } from "./usecases/empresas/delete-empresa-by-
 import { IEmpresasRepository } from "./repositories/empresas.repository";
 import { EmpresasRepositoryAdapter } from "../infrastructure/adapters/empresas.repository.adapter";
 import { EmpresaEntity } from "../infrastructure/data/entities/empresa.entity";
+import { SearchRecommendedVagasUseCase } from "./usecases/vagas/search-recommended-vagas.usecase";
+import { ICandidaturasRepository } from "./repositories/candidaturas.repository";
+import { CandidaturasRepositoryAdapter } from "../infrastructure/adapters/candidaturas.repository.adapter";
+import { ApplyToVagaUseCase } from "./usecases/candidaturas/apply-vaga.usecase";
+import { CandidaturaEntity } from "src/infrastructure/data/entities/candidatura.entity";
+import { ListApplicationsUseCase } from "./usecases/candidaturas/list-applications.usecase";
 
 @Module({
-  imports: [DomainModule, TypeOrmModule.forFeature([VagaEntity, UsuarioEntity, EmpresaEntity])],
+  imports: [DomainModule, TypeOrmModule.forFeature([VagaEntity, UsuarioEntity, EmpresaEntity, CandidaturaEntity])],
   providers: [
     CreateVagaUseCase,
     ListAllVagasUseCase,
     FindVagaByIdUseCase,
     DeleteVagaByIdUseCase,
     SearchVagasUseCase,
+    SearchRecommendedVagasUseCase,
+    ApplyToVagaUseCase,
+    ListApplicationsUseCase,
     CreateUsuarioUseCase,
     ListAllUsuariosUseCase,
     FindUsuarioByIdUseCase,
@@ -41,8 +50,9 @@ import { EmpresaEntity } from "../infrastructure/data/entities/empresa.entity";
     FindEmpresaByIdUseCase,
     DeleteEmpresaByIdUseCase,
     { provide: IVagasRepository, useClass: VagasRepositoryAdapter },
-    { provide: IUsuariosRepository, useClass: UsuariosRepositoryAdapter},
-    { provide: IEmpresasRepository, useClass: EmpresasRepositoryAdapter}
+    { provide: IUsuariosRepository, useClass: UsuariosRepositoryAdapter },
+    { provide: IEmpresasRepository, useClass: EmpresasRepositoryAdapter },
+    { provide: ICandidaturasRepository, useClass: CandidaturasRepositoryAdapter }
   ],
   exports: [
     CreateVagaUseCase,
@@ -50,6 +60,9 @@ import { EmpresaEntity } from "../infrastructure/data/entities/empresa.entity";
     FindVagaByIdUseCase,
     DeleteVagaByIdUseCase,
     SearchVagasUseCase,
+    SearchRecommendedVagasUseCase,
+    ApplyToVagaUseCase,
+    ListApplicationsUseCase,
     CreateUsuarioUseCase,
     ListAllUsuariosUseCase,
     FindUsuarioByIdUseCase,
@@ -58,6 +71,8 @@ import { EmpresaEntity } from "../infrastructure/data/entities/empresa.entity";
     ListAllEmpresasUseCase,
     FindEmpresaByIdUseCase,
     DeleteEmpresaByIdUseCase,
+    IUsuariosRepository,
+    IEmpresasRepository
   ]
 })
 export class ApplicationModule { }

@@ -17,7 +17,10 @@ export type Usuario = {
   cursos: Curso[];
   experiencias_profissionais: ExperienciaProfissional[];
   idiomas: Idioma[];
-  habilidades_qualificacoes:Habilidades[];
+  habilidades_qualificacoes: Habilidades[];
   linkedin?: string;
 }
 
+export type UsuarioResponse = Usuario & {
+  id: string;
+}
