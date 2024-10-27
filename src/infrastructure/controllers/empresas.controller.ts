@@ -31,7 +31,7 @@ export class EmpresasController {
     description: 'E-mail já está em uso.',
   })
   async create(@Body() data: CreateEmpresaRequest): Promise<Empresa> {
-    const salt = process.env.HASH_SAHT;
+    const salt = Number(process.env.HASH_SALT);
     const hashedSenha = await bcrypt.hash(data.senha, salt);
     return await this.createEmpresaUseCase.execute({ ...data, senha: hashedSenha });
   }
