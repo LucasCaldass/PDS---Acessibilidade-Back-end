@@ -3,6 +3,8 @@ import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagg
 import { ApplyToVagaUseCase } from "../../application/usecases/candidaturas/apply-vaga.usecase";
 import { ApplyVagaRequest } from "./requests/apply-vaga.request";
 import { ListApplicationsUseCase } from "../../application/usecases/candidaturas/list-applications.usecase";
+import { Roles } from "../../auth/roles.decorator";
+import { Role } from "../../auth/role.enum";
 
 @ApiTags('Candidaturas')
 @Controller('candidaturas')
@@ -14,6 +16,7 @@ export class CandidaturasController {
   ) { }
 
   @Post()
+  @Roles(Role.CANDIDATO)
   @ApiOperation({ summary: 'Aplicar para Vaga' })
   @ApiResponse({
     status: 200,
@@ -25,6 +28,7 @@ export class CandidaturasController {
   }
 
   @Get()
+  @Roles(Role.CANDIDATO)
   @ApiOperation({ summary: 'Listar candidaturas por usuário' })
   @ApiResponse({
     status: 200,
