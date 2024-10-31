@@ -29,4 +29,13 @@ export class CandidaturasRepositoryAdapter implements CandidaturasRepository {
       .where('candidatura.usuarioId = :usuarioId', { usuarioId: userId })
       .getMany();
   }
+
+  async findUsersByVagaId(vagaId: string) {
+    return await this.candidaturaRepository
+      .createQueryBuilder('candidatura')
+      .innerJoinAndSelect('candidatura.usuario', 'usuario')
+      .select(['usuario', 'candidatura.status'])
+      .where('candidatura.vagaId = :vagaId', { vagaId: vagaId })
+      .getMany();
+  }
 }

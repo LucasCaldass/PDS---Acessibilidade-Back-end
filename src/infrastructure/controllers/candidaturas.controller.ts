@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Req } from "@nestjs/common";
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { ApplyToVagaUseCase } from "../../application/usecases/candidaturas/apply-vaga.usecase";
 import { ApplyVagaRequest } from "./requests/apply-vaga.request";
@@ -39,4 +39,17 @@ export class CandidaturasController {
     const userId: string = req.user.id;
     return await this.listApplicationsUseCase.execute(userId);
   }
+
+  @Get(':id')
+  @Roles(Role.EMPRESA)
+  @ApiOperation({ summary: 'Listar usuários registrados em vaga' })
+  @ApiResponse({
+    status: 200,
+    description: 'Lista de Usuários'
+  })
+  @ApiBearerAuth()
+  async listAllByVagaId(@Param('id') vagaId: string) {
+    return await this.listApplicationsUseCase.execute(vagaId);
+  }
+
 }
