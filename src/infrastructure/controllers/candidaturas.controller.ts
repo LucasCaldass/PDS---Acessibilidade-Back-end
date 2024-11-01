@@ -5,6 +5,7 @@ import { ApplyVagaRequest } from "./requests/apply-vaga.request";
 import { ListApplicationsUseCase } from "../../application/usecases/candidaturas/list-applications.usecase";
 import { Roles } from "../../auth/roles.decorator";
 import { Role } from "../../auth/role.enum";
+import { ListApplicatsUseCase } from "src/application/usecases/candidaturas/list-applicants.usecase";
 
 @ApiTags('Candidaturas')
 @Controller('candidaturas')
@@ -13,6 +14,7 @@ export class CandidaturasController {
   constructor(
     private readonly applyVagaUseCase: ApplyToVagaUseCase,
     private readonly listApplicationsUseCase: ListApplicationsUseCase,
+    private readonly listApplicatsUseCase: ListApplicatsUseCase,
   ) { }
 
   @Post()
@@ -49,7 +51,7 @@ export class CandidaturasController {
   })
   @ApiBearerAuth()
   async listAllByVagaId(@Param('id') vagaId: string) {
-    return await this.listApplicationsUseCase.execute(vagaId);
+    return await this.listApplicatsUseCase.execute(vagaId);
   }
 
 }
