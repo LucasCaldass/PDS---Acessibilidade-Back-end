@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CandidaturasRepository } from '../../application/repositories/candidaturas.repository';
 import { CandidaturaEntity, StatusCandidaturaEnum } from '../data/entities/candidatura.entity';
+import { CandidaturaResponse } from '../../domain/models/candidatura.model';
 
 @Injectable()
 export class CandidaturasRepositoryAdapter implements CandidaturasRepository {
@@ -28,5 +29,17 @@ export class CandidaturasRepositoryAdapter implements CandidaturasRepository {
       .select(['vaga', 'candidatura.status'])
       .where('candidatura.usuarioId = :usuarioId', { usuarioId: userId })
       .getMany();
+  }
+
+  async findByUserAndVagaId(userId: string, vagaId: string): Promise<CandidaturaResponse> {
+    return await this.candidaturaRepository
+      .createQueryBuilder('candidatura')
+      .where(['candidatura.vagaId = :vagaId'], { vagaId })
+      .andWhere(['candidatura.usuarioId = :usuarioId'], { userId })
+      .getOne()
+  }
+
+  async updateStatus(candidaturaId: string, status: StatusCandidaturaEnum): Promise<void> {
+    await this.candidaturaRepository.save({ id: candidaturaId, status });
   }
 }
