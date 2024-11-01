@@ -5,7 +5,7 @@ import { ApplyVagaRequest } from "./requests/apply-vaga.request";
 import { ListApplicationsUseCase } from "../../application/usecases/candidaturas/list-applications.usecase";
 import { Roles } from "../../auth/roles.decorator";
 import { Role } from "../../auth/role.enum";
-import { ListApplicatsUseCase } from "src/application/usecases/candidaturas/list-applicants.usecase";
+import { ListApplicatsUseCase } from "../../application/usecases/candidaturas/list-applicants.usecase";
 
 @ApiTags('Candidaturas')
 @Controller('candidaturas')

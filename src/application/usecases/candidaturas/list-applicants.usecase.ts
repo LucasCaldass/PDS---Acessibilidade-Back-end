@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { CandidaturasRepository, ICandidaturasRepository } from "../../repositories/candidaturas.repository";
+import { CandidaturasRepository, ICandidaturasRepository } from "../../../application/repositories/candidaturas.repository";
 
 @Injectable()
 export class ListApplicatsUseCase {
