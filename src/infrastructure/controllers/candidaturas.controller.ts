@@ -1,5 +1,4 @@
-import { Body, Controller, Get, Param, Post, Req } from "@nestjs/common";
-import { Body, Controller, Get, Post, Put, Req } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Put, Req } from "@nestjs/common";
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { ApplyToVagaUseCase } from "../../application/usecases/candidaturas/apply-vaga.usecase";
 import { ApplyVagaRequest } from "./requests/apply-vaga.request";
