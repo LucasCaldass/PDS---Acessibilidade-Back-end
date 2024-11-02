@@ -31,6 +31,14 @@ export class CandidaturasRepositoryAdapter implements CandidaturasRepository {
       .getMany();
   }
 
+  async findUsersByVagaId(vagaId: string) {
+    return await this.candidaturaRepository
+      .createQueryBuilder('candidatura')
+      .innerJoinAndSelect('candidatura.usuario', 'usuario')
+      .select(['usuario', 'candidatura.status'])
+      .where('candidatura.vagaId = :vagaId', { vagaId: vagaId })
+      .getMany();
+    
   async findByUserAndVagaId(userId: string, vagaId: string): Promise<CandidaturaResponse> {
     return await this.candidaturaRepository
       .createQueryBuilder('candidatura')
