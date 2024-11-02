@@ -2,7 +2,7 @@ import { Inject, Injectable } from "@nestjs/common";
 import { CandidaturasRepository, ICandidaturasRepository } from "../../../application/repositories/candidaturas.repository";
 
 @Injectable()
-export class ListApplicatsUseCase {
+export class ListApplicantsUseCase {
   constructor(@Inject(ICandidaturasRepository) private readonly candidaturasRepository: CandidaturasRepository) { }
 
   async execute(vagaId: string) {

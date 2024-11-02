@@ -5,7 +5,7 @@ import { ApplyVagaRequest } from "./requests/apply-vaga.request";
 import { ListApplicationsUseCase } from "../../application/usecases/candidaturas/list-applications.usecase";
 import { Roles } from "../../auth/roles.decorator";
 import { Role } from "../../auth/role.enum";
-import { ListApplicatsUseCase } from "../../application/usecases/candidaturas/list-applicants.usecase";
+import { ListApplicantsUseCase } from "../../application/usecases/candidaturas/list-applicants.usecase";
 import { UpdateCandidaturasRequest } from "./requests/update-candidaturas.request";
 import { UpdateApplicationsStatusUseCase } from "../../application/usecases/candidaturas/update-applications-status.usecase";
 
@@ -16,7 +16,7 @@ export class CandidaturasController {
   constructor(
     private readonly applyVagaUseCase: ApplyToVagaUseCase,
     private readonly listApplicationsUseCase: ListApplicationsUseCase,
-    private readonly listApplicatsUseCase: ListApplicatsUseCase,
+    private readonly listApplicantsUseCase: ListApplicantsUseCase,
     private readonly updateApplicationsStatusUseCase: UpdateApplicationsStatusUseCase,
   ) { }
 
@@ -55,7 +55,7 @@ export class CandidaturasController {
   })
   @ApiBearerAuth()
   async listAllByVagaId(@Param('id') vagaId: string) {
-    return await this.listApplicatsUseCase.execute(vagaId);
+    return await this.listApplicantsUseCase.execute(vagaId);
   }
 
   @Put()
