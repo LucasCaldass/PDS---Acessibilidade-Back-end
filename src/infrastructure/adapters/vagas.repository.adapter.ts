@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Brackets } from 'typeorm';
-import { Vaga } from '../../domain/models/vaga.model';
+import { Vaga, VagaResult } from '../../domain/models/vaga.model';
 import { VagasRepository } from '../../application/repositories/vagas.repository';
 import { VagaEntity } from '../data/entities/vaga.entity';
 
@@ -10,18 +10,18 @@ export class VagasRepositoryAdapter implements VagasRepository {
   constructor(
     @InjectRepository(VagaEntity)
     private readonly vagaRepository: Repository<VagaEntity>,
-  ) {}
+  ) { }
 
-  async create(vaga: Vaga): Promise<Vaga> {
+  async create(vaga: Vaga): Promise<VagaResult> {
     const vagaEntity = await this.vagaRepository.save(vaga);
     return vagaEntity;
   }
 
-  async findAll(): Promise<Vaga[]> {
+  async findAll(): Promise<VagaResult[]> {
     return await this.vagaRepository.find();
   }
 
-  async findById(id: string): Promise<Vaga> {
+  async findById(id: string): Promise<VagaResult> {
     return await this.vagaRepository.findOneBy({ id });
   }
 
@@ -29,7 +29,7 @@ export class VagasRepositoryAdapter implements VagasRepository {
     await this.vagaRepository.delete(id);
   }
 
-  async search(query: string, tipoDeficiencia?: string): Promise<Array<Vaga>> {
+  async search(query: string, tipoDeficiencia?: string): Promise<Array<VagaResult>> {
     return await this.vagaRepository
       .createQueryBuilder('vaga')
       .where(
@@ -48,7 +48,7 @@ export class VagasRepositoryAdapter implements VagasRepository {
       .getMany();
   }
 
-  async searchRecommended(query: string): Promise<Array<Vaga>> {
+  async searchRecommended(query: string): Promise<Array<VagaResult>> {
     return await this.vagaRepository
       .createQueryBuilder('vaga')
       .where(
