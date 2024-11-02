@@ -11,6 +11,7 @@ export type Vaga = {
   endereco: string;
   remota: boolean;
   informacoesAdicionais?: string;
-  empresa:Empresa;
+  empresa: Empresa;
 }
 
+export type VagaResult = Vaga & { id: string; }
